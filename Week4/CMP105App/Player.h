@@ -6,7 +6,7 @@ class Player :
 public:
     Player();
     ~Player();
-    void handleInput(float dt);
+    void handleInput(float dt) override;
 
 private:
 	// Level objects

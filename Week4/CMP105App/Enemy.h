@@ -6,9 +6,12 @@ class Enemy :
 public:
     Enemy();
     ~Enemy();
-    void enemyMovement(float dt);
+    void update(float dt) override;
+    void setWindow(sf::RenderWindow* wnd);
     
 private:
-    float speed;
+    sf::Vector2f speed;
+    sf::Texture texture;
+    sf::RenderWindow* window;
 };
 

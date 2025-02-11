@@ -8,6 +8,8 @@
 #include "Enemy.h"
 #include <string.h>
 #include <iostream>
+#include "Background.h"
+#include "Cursor.h"
 
 
 class Level : BaseLevel {
@@ -26,5 +28,7 @@ private:
 	sf::Texture textureBad;
 	Player p1;
 	Enemy goomba;
+	Background bg;
+	Cursor cursor;
 
 };

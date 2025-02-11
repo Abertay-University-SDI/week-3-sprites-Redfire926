@@ -2,19 +2,41 @@
 
 Enemy::Enemy()
 {
-	speed = 200;
-	setVelocity(speed * 2, speed);
+	setPosition(600, 300);
+	setSize(sf::Vector2f(100, 100));
+
+	texture.loadFromFile("gfx/goomba.png");
+	setTexture(&texture);
+
+	speed = sf::Vector2f(800, 300);
+	setVelocity(speed);
 }
 
 Enemy::~Enemy()
 {
 }
 
-void Enemy::enemyMovement(float dt)
+void Enemy::setWindow(sf::RenderWindow* wnd)
 {
-	if (getPosition().x < 0)
-	{
-		setVelocity(speed * 2, 0);
-		move(velocity * dt);
-	}
+	window = wnd;
 }
+
+void Enemy::update(float dt)
+{
+	if ((getPosition().x < 0) || (getPosition().x > window->getSize().x - getSize().x))
+	{
+		 speed.x *= -1;
+
+		 setVelocity(speed);
+	}
+	if ((getPosition().y < 0) || (getPosition().y > window->getSize().y - getSize().y))
+	{
+		speed.y *= -1;
+
+		setVelocity(speed);
+	}
+	move(velocity.x * dt, velocity.y*dt);
+}
+
+
+

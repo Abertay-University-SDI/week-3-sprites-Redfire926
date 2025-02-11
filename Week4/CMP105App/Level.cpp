@@ -16,13 +16,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	p1.setTexture(&textureGood);
 	p1.setSize(sf::Vector2f(100, 100));
 	p1.setPosition(300, 300);
-	p1.setInput(input);
+	p1.setInput(in);
+	goomba.setWindow(hwnd);
+	bg.setInput(in);
+	bg.setWindow(hwnd);
+	cursor.setInput(in);
 
-	goomba.setTexture(&textureBad);
-	goomba.setSize(sf::Vector2f(100, 100));
-	goomba.setPosition(600, 300);
-	goomba.setWindow(window);
-
+	window->setMouseCursorVisible(false);
 }
 
 Level::~Level()
@@ -40,22 +40,25 @@ void Level::handleInput(float dt)
 	}
 
 	p1.handleInput(dt);
+	bg.handleInput(dt);
+	cursor.handleInput(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	goomba.update(dt);
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	window->draw(bg);
 	window->draw(testSprite);
 	window->draw(p1);
 	window->draw(goomba);
+	window->draw(cursor);
 
 	endDraw();
 }
